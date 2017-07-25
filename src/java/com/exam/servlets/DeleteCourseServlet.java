@@ -1,4 +1,5 @@
 package com.exam.servlets;
+import com.Message.Messages;
 import com.dao.DBConnection;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -26,27 +27,17 @@ public class DeleteCourseServlet extends HttpServlet {
             st1.setString(1,cn);
             status = st1.executeUpdate();
             if(status > 0){
-                String success="Course Deleted successfully";
-                session.setAttribute("succMsg", success);
-                session.setAttribute("errMsg", null);
-                response.sendRedirect("view_course.jsp");
+                Messages.successMessage(request, response, "Course Deleted successfully", "view_course.jsp");
             }
             else{
-                String error="Course Deletion Failed";
-                session.setAttribute("errMsg", error);
-                response.sendRedirect("view_course.jsp");
+                Messages.errorMessage(request, response, "Course Deletion Failed", "view_course.jsp");
             }
         }
         catch(SQLException ex){
             System.out.println(ex);
-              String error="Course Deletion Failed";
-                session.setAttribute("errMsg", error);
-                session.setAttribute("succMsg", error);
-                response.sendRedirect("view_course.jsp");
-        } 
-        catch (IOException ex) {
-            out.println(ex);
-        }finally {
+                Messages.errorMessage(request, response, "Course Deletion Failed", "view_course.jsp");
+                } 
+        finally {
             out.close();
         }
     }

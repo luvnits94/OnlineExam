@@ -1,4 +1,5 @@
 package com.exam.servlets;
+import com.Message.Messages;
 import com.dao.DBConnection;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -35,19 +36,12 @@ public class EnrollCourseServlet extends HttpServlet {
             st1.setString(4, app_status);
             status = st1.executeUpdate();
             if(status>0){
-                String success="Course Enrolled  Successfully";
-                //out.println(success);
-                session.setAttribute("succMsg", success);
-                session.setAttribute("errMsg", null);
-                response.sendRedirect("viewcourse_user.jsp");
+                Messages.successMessage(request, response, "Course Enrolled  Successfully","viewcourse_user.jsp");
             }
         } 
         catch(Exception e){
-            String error="Course Enroll Failure.. ! You have already Enrolled";
-            session.setAttribute("errMsg", error);
-            session.setAttribute("succMsg", null);
-            response.sendRedirect("viewcourse_user.jsp");
-        }
+            Messages.successMessage(request, response, "Course Enroll Failure.. ! You have already Enrolled","viewcourse_user.jsp");
+            }
         finally {
           
         }

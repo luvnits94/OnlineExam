@@ -1,4 +1,5 @@
 package com.exam.servlets;
+import com.Message.Messages;
 import com.dao.DBConnection;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -32,26 +33,14 @@ public class CourseApprovalServlet extends HttpServlet {
             st1.setString(3,request.getParameter("approve_user"));
             status = st1.executeUpdate();
             if(status>0){
-                String success="Course Approved  Successfully";
-                System.out.println(st1.toString());
-                session.setAttribute("succMsg", success);
-                session.setAttribute("errMsg", null);
-                response.sendRedirect("approval_request.jsp");
+                Messages.successMessage(request, response, "Course Approved  Successfully", "approval_request.jsp");
             }
             else{
-            String error="Course Approve Failure.. ! ";
-            System.out.println(st1.toString());
-            session.setAttribute("errMsg", error);
-            session.setAttribute("succMsg", null);
-            response.sendRedirect("approval_request.jsp");
+                Messages.errorMessage(request, response, "Course Approve Failure.. ! ", "approval_request.jsp");
             }
         } 
         catch(SQLException e){
-            System.out.println(st1.toString());
-            String error="Course Approve Failure.. ! ";
-            session.setAttribute("errMsg", error);
-            session.setAttribute("succMsg", null);
-            response.sendRedirect("approval_request.jsp");
+             Messages.errorMessage(request, response, "Course Approve Failure.. ! ", "approval_request.jsp");
         }
         finally {
         }

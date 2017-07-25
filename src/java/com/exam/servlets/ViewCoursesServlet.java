@@ -20,19 +20,22 @@ public class ViewCoursesServlet extends HttpServlet {
     ResultSet rs;
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        /*
         try {
+            
             con=DBConnection.establishConnection();
             st=con.prepareStatement("select * from course_master");
             rs=st.executeQuery();
             request.setAttribute("rs", rs);
             response.sendRedirect("view_course.jsp");
             con.close();
+           
         }
         catch (SQLException ex) {
             Logger.getLogger(ViewCoursesServlet.class.getName()).log(Level.SEVERE, null, ex);
         }        finally {
         }
+        */
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

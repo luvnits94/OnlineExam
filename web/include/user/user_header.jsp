@@ -59,27 +59,17 @@
         %>
         
         <br><br><br><br>
-        
-    <core:set var="abc" value="alert alert-success"/>
-    <core:if test="${requestScope.errMsg ne null} ">
-        <core:set var="abc" value="alert alert-danger"/>
-        <%-- out.print("class='alert alert-danger'"); --%>
-    </core:if>
-    
-    
-    <core:if test="${requestScope.succMsg ne null}">
-        <core:set var="abc" value="alert alert-success"></core:set>
-            <% out.print("class='alert alert-success'"); %>
-    </core:if>
-            <div class="<core:out value="${abc}"></core:out>">
+         <div class="alert alert-danger">
             <h2>
-                 ${sessionScope.errMsg}
                 <% 
                     if(request.getAttribute("errMsg") != null ){
                         out.print(request.getAttribute("errMsg"));
                     }                    
                 %>
-                ${sessionScope.succMsg}
+            </h2>
+        </div>
+        <div class="alert alert-success">
+            <h2>
                 <% 
                     if(request.getAttribute("succMsg") != null ){
                         out.print(request.getAttribute("succMsg"));

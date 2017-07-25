@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package com.exam.servlets;
+import com.Message.Messages;
 import com.dao.DBConnection;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -59,21 +60,11 @@ public class ResultCal extends HttpServlet {
             //st1.setString(2, );
             status = st1.executeUpdate();
             if(status > 0){
-                String success="Course Added Successfully";
-                //out.println(success);
-                session.setAttribute("succMsg", success);
-                session.setAttribute("errMsg", null);
-                response.sendRedirect("view_course.jsp");
+                Messages.successMessage(request, response, "Result Published Successfully", "view_course.jsp");
             }
             else{
-                String error="Course Addition Failed";
-                session.setAttribute("errMsg", error);
-                session.setAttribute("succMsg", null);
-                response.sendRedirect("view_course.jsp");
+                Messages.errorMessage(request, response, "Result Publishing Failed", "view_course.jsp");
             }
-            
-            
-            
         } 
         catch(Exception e){
             System.out.println(e);

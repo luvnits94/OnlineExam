@@ -21,17 +21,12 @@
         <div class="jumbotron container-fluid">
             <center>
                 <h1>Welcome To Online Exam Portal</h1>
-                <%
-                    //Redirect to user home and admin home
-                    if(session.getAttribute("user_type") != null){
-                        if(session.getAttribute("user_type").equals("admin")){
-                            response.sendRedirect("admin_home.jsp");
-                        }
-                        else if(session.getAttribute("user_type").equals("user")){
-                            response.sendRedirect("user_home.jsp");
-                        }
-                    }
-                %>
+                
+                
+                <%--  Redirection To User Or Admin Respectively  --%>
+                <%@include file="include/Redirect/admin_or_user.jsp" %>
+                
+                
             </center>
         </div>
         <div class="alert alert-danger">
@@ -47,7 +42,7 @@
             <h2>
                 <% 
                     if(request.getAttribute("succMsg") != null ){
-                        out.print(request.getAttribute("errMsg"));
+                        out.print(request.getAttribute("succMsg"));
                     }                    
                 %>
             </h2>

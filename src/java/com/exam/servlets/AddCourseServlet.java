@@ -1,10 +1,14 @@
 package com.exam.servlets;
+import com.Message.Messages;
 import com.dao.DBConnection;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpSession;
@@ -31,27 +35,16 @@ public class AddCourseServlet extends HttpServlet {
             st1.setString(2, cd);
             status = st1.executeUpdate();
             if(status > 0){
-                String success="Course Added Successfully";
-                //out.println(success);
-                session.setAttribute("succMsg", success);
-                session.setAttribute("errMsg", null);
-                response.sendRedirect("view_course.jsp");
+                
+                Messages.successMessage(request, response, "Course Added Successfully", "view_course.jsp");
             }
             else{
-                String error="Course Addition Failed";
-                session.setAttribute("errMsg", error);
-                session.setAttribute("succMsg", null);
-                response.sendRedirect("view_course.jsp");
+                Messages.errorMessage(request, response,"Course Addition Failed", "view_course.jsp");
             }
         }
         catch(SQLException ex){
-                String error="Course Addition Failed";
-                session.setAttribute("errMsg", error);
-                session.setAttribute("succMsg", null);
-                response.sendRedirect("view_course.jsp");
-        } catch (IOException ex) {
-            out.println(ex);
-        }
+            Messages.errorMessage(request, response,"Course Addition Failed", "view_course.jsp");
+        } 
         finally {
         }
     }

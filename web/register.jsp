@@ -36,12 +36,15 @@
                     if(request.getAttribute("errMsg") != null ){
                         out.print(request.getAttribute("errMsg"));
                     }                    
-                    if(request.getAttribute("msg") != null){
-                        out.print("<h3>"+request.getAttribute("msg")+"</h3>");
-                    }
-                    if(session.getAttribute("sess_exp_Msg") != null){
-                        out.print("<h3>"+session.getAttribute("sess_exp_Msg")+"</h3>");
-                    }
+                %>
+            </h2>
+        </div>
+        <div class="alert alert-success">
+            <h2>
+                <% 
+                    if(request.getAttribute("succMsg") != null ){
+                        out.print(request.getAttribute("succMsg"));
+                    }                    
                 %>
             </h2>
         </div>

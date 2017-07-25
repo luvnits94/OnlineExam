@@ -5,6 +5,7 @@
  */
 package com.exam.servlets;
 
+import com.Message.Messages;
 import com.dao.DBConnection;
 import java.sql.Connection;
 import java.io.IOException;
@@ -64,29 +65,22 @@ public class RegisterServlet extends HttpServlet {
             System.out.print(status);
             out.print(status);
             if(status > 0){
-                String success="Registration Successfull";
-                request.setAttribute("succMsg", success);
-                request.setAttribute("errMsg", null);
-                //response.sendRedirect("login.jsp");
-                request.setAttribute("succMsg",success);
-                RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
-                rd.forward(request, response);
+               Messages.successMessage(request, response, "Registration Successful !","login.jsp");
+            
             }
             else{
-                String error="Registration Failed";
-                request.setAttribute("errMsg", error);
-                request.setAttribute("succMsg", null);
-                RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
-                rd.forward(request, response);
+                Messages.errorMessage(request, response, "Registration Failed due to some Error! Please Try Again Later","login.jsp");
             }
         } 
         catch (SQLException ex) {
                 out.print(ex);
-                String error="Registration Failed! Please Choose A Unique UserName";
-                request.setAttribute("errMsg", error);
-                RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
-                rd.forward(request, response);
-        }finally {
+                Messages.errorMessage(request, response, "Registration Failed! Please Choose A Unique UserName","login.jsp");
+        }
+        catch(NumberFormatException ex){
+                out.print(ex);
+                Messages.errorMessage(request, response, "Registration Failed ! Age and Contact Number should be a Number","login.jsp");
+        }
+        finally {
             out.close();
         }
     }

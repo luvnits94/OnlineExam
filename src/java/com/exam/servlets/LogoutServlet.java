@@ -1,6 +1,5 @@
 package com.exam.servlets;
-
-
+import com.Message.Messages;
 import com.dao.DBConnection;
 import com.exam.session.Session;
 import java.io.IOException;
@@ -23,15 +22,18 @@ public class LogoutServlet extends HttpServlet {
             status = Session.sessionUpdate(con,session.getAttribute("username").toString(), 0,"0");
             if(status >0){
                 session.invalidate();
+                Messages.successMessage(request, response, "Logged Out Successfully","login.jsp");
                 response.sendRedirect("login.jsp");
             }
             else{
-                System.out.println("Logout Failed");
+                Messages.errorMessage(request, response, "Login Failed","login.jsp");
             }
         }
         catch(Exception e){
             System.out.println(e);
-        }finally {
+            Messages.errorMessage(request, response, "Login Failed","login.jsp");
+        }
+        finally {
             out.close();
         }
     }

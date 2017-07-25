@@ -1,4 +1,5 @@
 package com.exam.servlets;
+import com.Message.Messages;
 import com.dao.DBConnection;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -31,19 +32,11 @@ public class CancelCourseServlet extends HttpServlet {
             System.out.println(st1);
             status = st1.executeUpdate();
             if(status>0){
-                String success="Course Cancelled  Successfully";
-                //out.println(success);
-                session.setAttribute("succMsg", success);
-                session.setAttribute("errMsg", null);
-                response.sendRedirect("approval_request.jsp");
-                
+                Messages.successMessage(request, response, "Course Cancelled  Successfully", "approval_request.jsp");
             }
         } 
         catch(Exception e){
-            String error="Course Cancell Failed!";
-            session.setAttribute("errMsg", error);
-            session.setAttribute("succMsg", null);
-            response.sendRedirect("viewcourse.jsp");
+            Messages.errorMessage(request, response, "Course Cancell Failed!", "viewcourse.jsp");
         }
         finally {
           
