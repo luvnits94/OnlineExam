@@ -1,0 +1,21 @@
+SMAP
+login_jsp.java
+JSP
+*S JSP
+*F
++ 0 login.jsp
+login.jsp
++ 1 admin_or_user.jsp
+include/Redirect/admin_or_user.jsp
+*L
+5,21:49
+26:70,2
+27:72
+1#1:73
+3,9:76
+27#0,8:85
+35,4:94
+38,6:98
+44,4:105
+47,22:109
+*E
