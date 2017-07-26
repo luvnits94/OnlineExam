@@ -15,7 +15,7 @@ public class EnrollCourseServlet extends HttpServlet {
     PreparedStatement st1 =null;
     Connection con = null;
     HttpSession session ; 
-    String ex_stat="Not Appeared";
+    String ex_stat="-";
     String app_status="Waiting for Course Approval";
             
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)

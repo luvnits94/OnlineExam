@@ -27,10 +27,11 @@ public class CourseApprovalServlet extends HttpServlet {
             int status = -1;
             session = request.getSession();
             con=DBConnection.establishConnection();
-            st1=con.prepareStatement("update user_course_mapping set approval_status =? where course =? and login_id =?");
+            st1=con.prepareStatement("update user_course_mapping set approval_status =? , exam_status = ? where course =? and login_id =?");
             st1.setString(1,"Approved");
-            st1.setString(2,request.getParameter("btn_approve_course"));
-            st1.setString(3,request.getParameter("approve_user"));
+            st1.setString(2,"Not Appeared");
+            st1.setString(3,request.getParameter("btn_approve_course"));
+            st1.setString(4,request.getParameter("approve_user"));
             status = st1.executeUpdate();
             if(status>0){
                 Messages.successMessage(request, response, "Course Approved  Successfully", "approval_request.jsp");

@@ -1,4 +1,5 @@
 package com.exam.servlets;
+import com.Message.Messages;
 import com.dao.DBConnection;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -33,7 +34,7 @@ public class AddQuestionServlet extends HttpServlet {
             String o2 = request.getParameter("op2");
             String o3 = request.getParameter("op3");
             String o4 = request.getParameter("op4");
-            String ans = request.getParameter("ans");
+            int ans = new Integer(request.getParameter("ans"));
             out.print(qn);
             con=DBConnection.establishConnection();
             st1=con.prepareStatement("insert into question_master values(?,?,?,?,?,?,?)");
@@ -43,27 +44,19 @@ public class AddQuestionServlet extends HttpServlet {
             st1.setString(4, o2);
             st1.setString(5, o3);
             st1.setString(6, o4);
-            st1.setString(7, ans);
+            st1.setInt(7, ans);
             status = st1.executeUpdate();
             if(status > 0){
-                String success="Question Added successfully";
-                session.setAttribute("succMsg", success);
-                session.setAttribute("errMsg", null);
-                response.sendRedirect("add_question.jsp");
+                Messages.successMessage(request, response, "Question Added successfully", "add_question.jsp");
             }
             else{
-                String error="Question Addition Failed";
-                session.setAttribute("errMsg", error);
-                session.setAttribute("succMsg", null);
-                response.sendRedirect("add_question.jsp");
+                Messages.errorMessage(request, response, "Question Addition Failed", "add_question.jsp");
+                
             }
         }
         catch(SQLException ex){
-            System.out.println(ex);
-              String error="Question Addition Failed";
-                session.setAttribute("errMsg", error);
-                session.setAttribute("succMsg", null);
-                response.sendRedirect("add_question.jsp");
+                System.out.println(ex);
+                Messages.errorMessage(request, response, "Question Addition Failed ! Same Question Exists", "add_question.jsp");
         } 
         catch (IOException ex) {
             out.println(ex);

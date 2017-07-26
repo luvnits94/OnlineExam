@@ -49,12 +49,14 @@ public class LoginServlet extends HttpServlet {
                     Messages.errorMessage(request, response, "User Already Logged In Another Machine , Please Log Out To Continue","login.jsp");
                 }
                 if(rs.getInt(3) == 1){
-                     session.setAttribute("user_type","admin");
-                    response.sendRedirect("admin_home.jsp");
+                    session.setAttribute("user_type","admin");
+                    Messages.successMessage(request, response,"Admin Successfully Logged IN","admin_home.jsp");
+                    //response.sendRedirect("admin_home.jsp");
                 }
                 else if(rs.getInt(3) == 2){
                     session.setAttribute("user_type","user");
-                    response.sendRedirect("user_home.jsp");
+                    Messages.successMessage(request, response,"User Successfully Logged IN","user_home.jsp");
+//                    /response.sendRedirect(".jsp");
                 }
             }
             else{

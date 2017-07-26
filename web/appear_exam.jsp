@@ -9,7 +9,7 @@
         <sql:param value="${param.btn_apply_exam}" />    
         <sql:param value="${no_of_qs}" />    
     </sql:query>
-    <core:out value="${requestScope.btn_apply_exam}"></core:out>
+    <core:set var="course_exam" value="${param.btn_apply_exam}" scope="session"/>
         <div class="container">
             <form class="form-group" action="ResultCal">
             <core:set var="i" value="1"></core:set>
@@ -21,20 +21,20 @@
                 <core:forEach var="data" items="${rs.rows}">
                     <h3>Question <core:out value="${i}"/>: <core:out value="${data.question}"/></h3>
                     <div class="radio">
-                        <label><input type="radio" name="qs<core:out value="${i}"/>"value="<core:out value="${data.op1}"/>" /><core:out value="${data.op1}"/></label>
+                        <label><input type="radio" name="qs<core:out value="${i}"/>"value="1" /><core:out value="${data.op1}"/></label>
                     </div>
                     <div class="radio">
-                        <label><input type="radio" name="qs<core:out value="${i}"/>"value="<core:out value="${data.op2}"/>"  /><core:out value="${data.op2}"/></label>
+                        <label><input type="radio" name="qs<core:out value="${i}"/>"value="2"  /><core:out value="${data.op2}"/></label>
                     </div>
                     <div class="radio">
-                        <label><input type="radio" name="qs<core:out value="${i}"/>"value="<core:out value="${data.op3}"/>" /><core:out value="${data.op3}"/></label>
+                        <label><input type="radio" name="qs<core:out value="${i}"/>"value="3" /><core:out value="${data.op3}"/></label>
                     </div>
                     <div class="radio">
-                        <label><input type="radio" name="qs<core:out value="${i}"/>"value="<core:out value="${data.op4}"/>" /><core:out value="${data.op4}"/></label>
+                        <label><input type="radio" name="qs<core:out value="${i}"/>"value="4" /><core:out value="${data.op4}"/></label>
                     </div>
                         <core:set var="ans" value="${data.ans}"/>
                     <%
-                        a.add((String)pageContext.getAttribute("ans"));
+                        a.add(pageContext.getAttribute("ans").toString());
                         out.println("Answer:"+(String)(pageContext.getAttribute("ans")+" "+a.get(0)));
                         session.setAttribute("ans_list", a);
                     %>

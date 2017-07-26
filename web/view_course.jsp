@@ -6,6 +6,10 @@
 <h2>Courses</h2>
     <sql:setDataSource driver="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3307/db_online_exam" user="root" password="password"/>
     <sql:query sql="select * from course_master" var="rs"/>
+    <div class="row">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4">
+        
         <div class="form-group">
             <table class="table table-striped table-condensed table-bordered">
                 <thead>
@@ -28,6 +32,10 @@
                 </tbody>
             </table>
         </div>
+        </div>
+        <div class="col-lg-4"></div>
+        </div>
+    </div>
 
 
 

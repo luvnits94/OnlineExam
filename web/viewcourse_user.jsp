@@ -16,6 +16,8 @@
                 <th>Exam Status</th>
                 </thead>
                 <tbody>
+                    
+                    
                 <core:forEach var="data" items="${rs.rows}">
                     <tr> 
                             <td><core:out value="${data.course}"></core:out></td>
@@ -26,20 +28,38 @@
                                 <sql:param value="${data.course}" />
                             </sql:query>
                             <core:choose>
+                                
+                                
+                                
                                 <core:when test="${rs1.getRowCount()>0}">
                                     <!core:when test="${data2.approval_status.equals("Approved")==true}">
                                         
                                     <!Cancel Course >
+                                    
+                                    
                                         <form action="RequestCancellationServlet">
                                         <td><button class="btn btn-danger" type="submit" name="btn_unroll" value="<core:out value="${data.course}"></core:out>">Cancel Course</button></td>
                                         </form>
                                         <core:forEach var="data2" items="${rs1.rows}">
                                             <td><core:out value="${data2.approval_status}"></core:out></td>
                                             <td><core:out value="${data2.exam_status}"></core:out>
-                                        <form action="appear_exam.jsp">
-                                            <button class="btn btn-success" type="submit" name="btn_apply_exam" value="<core:out value="${data.course}"></core:out>">Appear Now</button>
-                                        </form>
-                                            </td>
+                                            
+                                            <!core:set var="blank" value="-" />
+                                            <core:if test="${data2.exam_status eq 'Not Appeared'}">
+                                                <form action="appear_exam.jsp">
+                                                    <button class="btn btn-success" type="submit" name="btn_apply_exam" value="<core:out value="${data.course}"></core:out>">Appear Now</button>
+                                                </form>
+                                            </core:if>
+                                            <!core:set var="blank" value="Appeared" />
+                                            
+                                            <core:if test="${data2.exam_status eq 'Appeared'}">
+                                                <form action="show_result.jsp">
+                                                    <button class="btn btn-success" type="submit" name="btn_apply_exam" value="<core:out value="${data.course}"></core:out>">View Result</button>
+                                                </form>
+                                            </core:if>
+                                            
+                                                    </td>
+                                                    
                                         </core:forEach>
                                     <!core:when>    
                                 </core:when>
@@ -58,29 +78,6 @@
                 </tbody>
             </table>
         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                    
-                    
     <%@include file="include/user/user_footer.jsp" %>  
     
     

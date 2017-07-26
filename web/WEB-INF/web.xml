@@ -29,10 +29,6 @@
         <servlet-class>com.exam.servlets.AddQuestionServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ViewCoursesServlet</servlet-name>
-        <servlet-class>com.exam.servlets.ViewCoursesServlet</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>DeleteCourseServlet</servlet-name>
         <servlet-class>com.exam.servlets.DeleteCourseServlet</servlet-class>
     </servlet>
@@ -83,10 +79,6 @@
     <servlet-mapping>
         <servlet-name>AddQuestionServlet</servlet-name>
         <url-pattern>/AddQuestionServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ViewCoursesServlet</servlet-name>
-        <url-pattern>/ViewCoursesServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>DeleteCourseServlet</servlet-name>
